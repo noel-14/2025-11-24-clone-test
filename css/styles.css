@@ -1,36 +1,125 @@
+/* ベース */
 :root{
-  --bg:#f7f7fb;
-  --accent:#2b7cff;
-  --text:#222;
+  --bg: #FAF6F2;         /* 柔らかいベージュ */
+  --card: #FFF8F6;
+  --accent: #D9A0A0;     /* ダスティローズ */
+  --accent-dark: #8B5E6F;/* 深めのアクセント */
+  --muted: #7A6B6B;      /* 文字の落ち着いた色 */
+  --shadow: rgba(59,47,47,0.08);
+  --radius: 12px;
+  --max-width: 1000px;
 }
+
 *{box-sizing:border-box}
+html,body{height:100%}
 body{
   margin:0;
-  font-family:system-ui, "Segoe UI", Roboto, "メイリオ", sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--muted);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.8;
+  font-size:18px; /* 読みやすさ重視 */
 }
+
+/* ヘッダー */
 .site-header{
-  background:var(--accent);
-  color:#fff;
-  padding:2rem;
+  max-width:var(--max-width);
+  margin:28px auto;
+  padding:20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px var(--shadow);
   text-align:center;
 }
+.site-header h1{
+  margin:0 0 6px 0;
+  font-family: "Merriweather", "Noto Sans JP", serif;
+  font-weight:400;
+  color: var(--accent-dark);
+  font-size:28px;
+}
+.site-header .lead{
+  margin:0;
+  color: #8b7f7f;
+}
+
+/* ヒーロー */
 .hero{
-  padding:3rem 1rem;
-  max-width:900px;
-  margin:1.5rem auto;
-  background:#fff;
-  border-radius:8px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.06);
+  max-width:var(--max-width);
+  margin:28px auto;
+  padding:36px;
+  background: linear-gradient(135deg, rgba(217,160,160,0.06), rgba(157,191,158,0.04));
+  border-radius: calc(var(--radius) + 4px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 10px 30px var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  right:-60px;
+  bottom:-60px;
+  width:260px;
+  height:260px;
+  background: radial-gradient(circle at 30% 30%, rgba(217,160,160,0.12), transparent 40%),
+              radial-gradient(circle at 70% 70%, rgba(157,191,158,0.08), transparent 40%);
+  transform: rotate(15deg);
+  filter: blur(10px);
+  opacity:0.9;
+}
+.hero-inner{
+  position:relative;
+  z-index:2;
   text-align:center;
+  padding:8px 20px;
+  max-width:720px;
 }
-button{
-  background:var(--accent);
+.hero h2{
+  margin:0 0 8px 0;
+  font-family:"Merriweather", serif;
+  font-size:22px;
+  color:var(--accent-dark);
+}
+.hero p{
+  margin:0 0 18px 0;
+  color:#6f6363;
+}
+
+/* ボタン */
+.btn-primary{
+  appearance:none;
+  border:0;
+  background: linear-gradient(180deg, var(--accent), #c58585);
   color:#fff;
-  border:none;
-  padding:0.75rem 1.25rem;
-  border-radius:6px;
+  padding:12px 20px;
+  border-radius:999px;
+  font-weight:700;
   cursor:pointer;
+  box-shadow: 0 6px 18px rgba(141,90,90,0.18);
+  transition: transform .12s ease, box-shadow .12s ease;
+  font-size:16px;
 }
-footer{ text-align:center; padding:1rem; color:#666;}
+.btn-primary:hover{ transform: translateY(-3px); box-shadow: 0 14px 30px rgba(141,90,90,0.18); }
+.btn-primary:active{ transform: translateY(-1px); }
+
+/* フッター */
+.site-footer{
+  max-width:var(--max-width);
+  margin:28px auto 48px;
+  text-align:center;
+  color:#8b7f7f;
+  font-size:14px;
+}
+
+/* レスポンシブ微調整 */
+@media (max-width:640px){
+  .site-header,.hero,.site-footer{margin:18px 16px}
+  body{font-size:17px}
+  .hero{padding:24px}
+  .site-header h1{font-size:22px}
+}
